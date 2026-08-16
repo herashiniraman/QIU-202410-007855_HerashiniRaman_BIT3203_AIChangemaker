@@ -32,7 +32,7 @@ def main():
         FoodPickup(
             "Ice Cream Cafe",
             15,
-            "5PM",
+            "10PM",
             "7PM"
         ),
 
@@ -64,13 +64,16 @@ def main():
 
     if success:
 
-        for restaurant, volunteer in solver.solution.items():
+     for restaurant, volunteer in solver.solution.items():
 
-            print(
-                restaurant,
-                "→",
-                volunteer
-            )
+        print(
+            restaurant,
+            "→",
+            volunteer
+        )
+
+     print("\nScheduling completed successfully.")
+     print("Algorithm used: CSP Backtracking with MRV Heuristic")
 
     else:
 
