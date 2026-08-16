@@ -1,33 +1,46 @@
-# AI Changemaker Agent for Social Impact
+# RescueSlot: Intelligent Food Rescue Pickup Scheduler
 
 This repository is for the individual assignment in **BCS2143/BIT3203 Artificial Intelligence**, Study Intake 202607.
 
 ## Student information
 
-- Student name:
-- Student ID:
-- Programme: BCS / BIT
-- Course code: BCS2143 / BIT3203
-- GitHub username:
+- Student name: Herashini Raman
+- Student ID: QIU-202410-007855
+- Programme: BIT
+- Course code: BIT3203
+- GitHub username: herashiniraman
 
 ## Project title
 
-Enter a project title of not more than 10 words.
+RescueSlot
 
 ## Problem summary
 
-Describe the problem, target users, evidence, urgency and expected social value.
+Food waste is a common problem where restaurants and cafes may have extra food at the end of the day, while some communities and organisations still need food support. However, arranging food pickups can be difficult because volunteers have different available times, vehicle limitations, and pickup schedules.
+
+The target users of this project are restaurants, cafes, food rescue organisations, and volunteers who participate in food donation activities.
+
+RescueSlot helps organise food pickup assignments by finding suitable volunteers based on different constraints.The project aims to reduce food wastage and make the food rescue process easier to manage.
 
 ## AI method
 
-State the principal AI method implemented, such as uninformed search, heuristic search or constraint satisfaction.
+The main AI method used in this project is a Constraint Satisfaction Problem (CSP).
+
+The system uses CSP with Backtracking Search and Minimum Remaining Values (MRV) heuristic to assign volunteers to food pickup tasks. The algorithm considers constraints such as volunteer availability, vehicle capacity, and pickup requirements to find a suitable schedule.
 
 ## PEAS
 
 - Performance measure:
+  Successfully create a valid food pickup schedule while satisfying all given constraints.
+
 - Environment:
+  A food rescue environment involving restaurants, food donations, volunteers, and vehicle resources.
+
 - Actuators:
+  Assign available volunteers to different food pickup tasks.
+
 - Sensors:
+  Information about volunteer availability, vehicle capacity, food weight, pickup time, and expiry time.
 
 ## Installation
 
@@ -40,26 +53,32 @@ python -m pip install -r requirements.txt
 
 ## Running the prototype
 
-```powershell
-python src/main.py
-```
+## Running the prototype
 
-Update this section when your implementation is ready.
+Run the following command from the project folder:
+
+```bash
+python3 src/main.py
+
 
 ## Testing
 
-Explain how to run at least three meaningful tests and where the results are recorded.
+The system was tested using three different scenarios:
+
+1. Successful scheduling when volunteer availability and vehicle capacity satisfy requirements.
+2. Vehicle capacity constraint where no volunteer can handle the food weight.
+3. Volunteer availability conflict where no suitable volunteer is available.
+
+The testing results and evidence screenshots are recorded in the `results/` folder.
 
 ## Repository structure
 
 - `src/` — Python source code
-- `tests/` — test scripts and test cases
-- `data/` — permitted sample or simulated data
-- `results/` — outputs, figures and testing evidence
-- `docs/` — problem statement, PEAS and Responsible AI notes
-- `presentation/` — slides and approved video link
-- `DEVELOPMENT_LOG.md` — development decisions and milestones
-- `AI_USE_DECLARATION.md` — compulsory AI-use declaration
+- `tests/` — test cases
+- `results/` — outputs and testing evidence
+- `docs/` — project documentation
+- `presentation/` — presentation materials
+
 
 ## Known limitations
 
