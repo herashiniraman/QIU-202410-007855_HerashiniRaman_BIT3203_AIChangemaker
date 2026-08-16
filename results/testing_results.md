@@ -17,6 +17,10 @@ The system successfully generated a pickup schedule:
 - Fung Chui Restaurant → Amirul
 - Charlotte Bakery → Lee Jung
 
+
+![Test Case 1 Output](test_case_1_success.png)
+
+
 ### Outcome
 Successful scheduling was achieved.
 
@@ -31,6 +35,8 @@ To test whether the system can detect situations where the food weight exceeds v
 
 The system displayed:
 No valid schedule found
+
+![Test Case 2 Output](test_case_2_capacity.png)
 
 
 ### Outcome
@@ -48,6 +54,7 @@ To evaluate whether the system checks volunteer availability before assigning pi
 The system displayed:
 No valid schedule found
 
+![Test Case 3 Output](test_case_3_time_conflict.png)
 
 ### Outcome
 The system successfully identified that no suitable volunteer was available for the requested pickup time.
