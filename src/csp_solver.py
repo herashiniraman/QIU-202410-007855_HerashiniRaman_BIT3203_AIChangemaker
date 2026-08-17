@@ -14,13 +14,8 @@ class CSPSolver:
             return False
 
 
-        # Availability constraint
+        # Volunteer availability constraint
         if volunteer.available_time != pickup.pickup_time:
-            return False
-
-
-        # One volunteer cannot handle multiple pickups
-        if volunteer.name in self.solution.values():
             return False
 
 
@@ -28,57 +23,42 @@ class CSPSolver:
 
 
 
-    # MRV Heuristic
-    # Select pickup with the fewest possible volunteers first
-
+    # MRV heuristic
     def select_mrv_order(self):
 
         pickup_options = []
 
-
         for pickup in self.pickups:
 
-            possible_volunteers = []
-
+            options = []
 
             for volunteer in self.volunteers:
 
                 if self.check_constraints(volunteer, pickup):
-
-                    possible_volunteers.append(volunteer)
+                    options.append(volunteer)
 
 
             pickup_options.append(
-                (pickup, len(possible_volunteers))
+                (pickup, options)
             )
 
 
+        # Sort by least available volunteers first
         pickup_options.sort(
-            key=lambda x: x[1]
+            key=lambda x: len(x[1])
         )
 
 
         return [
-            item[0]
-            for item in pickup_options
+            item[0] for item in pickup_options
         ]
 
 
 
-    def solve(self):
-
-        self.pickups = self.select_mrv_order()
-
-        return self.backtrack(0)
-
-
-
+    # Backtracking search
     def backtrack(self, index):
 
-        # Goal: all pickups assigned
-
         if index == len(self.pickups):
-
             return True
 
 
@@ -87,30 +67,31 @@ class CSPSolver:
 
         for volunteer in self.volunteers:
 
+            if volunteer.name not in self.solution.values():
 
-            if self.check_constraints(volunteer, pickup):
+                if self.check_constraints(volunteer, pickup):
 
-
-                # Assign
-
-                self.solution[pickup.restaurant] = volunteer.name
+                    self.solution[pickup.restaurant] = volunteer.name
 
 
-
-                # Continue searching
-
-                if self.backtrack(index + 1):
-
-                    return True
+                    if self.backtrack(index + 1):
+                        return True
 
 
-
-                # Undo assignment (backtracking)
-
-                del self.solution[pickup.restaurant]
-
+                    del self.solution[pickup.restaurant]
 
 
         return False
+
+
+
+    def solve(self):
+
+        self.pickups = self.select_mrv_order()
+
+        success = self.backtrack(0)
+
+        return success
+
 
     
