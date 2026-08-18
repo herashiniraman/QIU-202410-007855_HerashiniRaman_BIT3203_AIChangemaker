@@ -51,7 +51,6 @@ python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
 ```
 
-## Running the prototype
 
 ## Running the prototype
 
@@ -59,6 +58,8 @@ Run the following command from the project folder:
 
 ```bash
 python3 src/main.py
+
+The program uses CSP Backtracking Search with MRV heuristic to generate volunteer assignments while checking availability and vehicle capacity constraints.
 
 
 ## Testing
@@ -69,7 +70,7 @@ The system was tested using three different scenarios:
 2. Vehicle capacity constraint where no volunteer can handle the food weight.
 3. Volunteer availability conflict where no suitable volunteer is available.
 
-The testing results and evidence screenshots are recorded in the `results/` folder.
+The testing results, test case descriptions, and evidence screenshots are recorded in the `results/` folder.
 
 ## Repository structure
 
@@ -82,7 +83,10 @@ The testing results and evidence screenshots are recorded in the `results/` fold
 
 ## Known limitations
 
-State technical, data, user, deployment and Responsible AI limitations.
+- The system currently uses simulated volunteer and food pickup data instead of real-time data from restaurants or organisations.
+- The scheduling process does not include real-time location tracking or route optimisation for volunteers.
+- The accuracy of the generated schedule depends on the correctness of volunteer availability and vehicle information provided.
+- The current prototype is tested on a small number of pickup requests and volunteers, so larger-scale deployment may require further improvements.
 
 ## Submission
 
