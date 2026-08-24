@@ -1,3 +1,27 @@
+from models import Volunteer, FoodPickup
+
+
+def convert_time(time):
+    """
+    Convert time format such as 5PM into 24-hour integer format.
+    Example:
+    5PM -> 17
+    8PM -> 20
+    """
+
+    hour = int(time[:-2])
+    period = time[-2:]
+
+    if period == "PM" and hour != 12:
+        hour += 12
+
+    elif period == "AM" and hour == 12:
+        hour = 0
+
+    return hour
+
+
+
 class CSPSolver:
 
     def __init__(self, volunteers, pickups):
@@ -9,13 +33,21 @@ class CSPSolver:
 
     def check_constraints(self, volunteer, pickup):
 
-        # Vehicle capacity constraint
+        # Constraint 1:
+        # Vehicle capacity must be sufficient
         if volunteer.vehicle_capacity < pickup.food_weight:
             return False
 
 
-        # Volunteer availability constraint
+        # Constraint 2:
+        # Volunteer must be available during pickup time
         if volunteer.available_time != pickup.pickup_time:
+            return False
+
+
+        # Constraint 3:
+        # Pickup must happen before food expiry
+        if convert_time(pickup.pickup_time) >= convert_time(pickup.expiry_time):
             return False
 
 
@@ -43,7 +75,7 @@ class CSPSolver:
             )
 
 
-        # Sort by least available volunteers first
+        # Select the pickup with the fewest available volunteers first
         pickup_options.sort(
             key=lambda x: len(x[1])
         )
@@ -92,6 +124,5 @@ class CSPSolver:
         success = self.backtrack(0)
 
         return success
-
 
     
