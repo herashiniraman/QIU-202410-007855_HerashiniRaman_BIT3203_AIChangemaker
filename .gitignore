@@ -9,5 +9,5 @@ __pycache__/
 *.pem
 .vscode/
 .DS_Store
-
+*.zip
 
